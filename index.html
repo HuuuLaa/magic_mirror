@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- 	解决双击缩放的问题 -->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1,user-scalable=no" name="viewport" />
+	<meta name="apple-mobile-web-app-title" content=""><!-- 添加到主屏后的标题（iOS 6 新增） -->  
+<!--     <meta name="apple-mobile-web-app-capable" content="yes" />是否启用 WebApp 全屏模式 --> 
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /><!-- 设置状态栏的背景颜色  --> 
+  
+	<title>健康魔镜入门手册</title>
+	<link rel="stylesheet" href="material/css/mm_style.css">
+	<script src="material/js/requestNextAnimationFrame.js"></script>	
+ 	<script src="material/js/jquery-3.2.1.min.js"></script>
+	 <script src="material/js/sprites.js"></script>
+</head>
+<body>
+	
+	<div id="main">
+
+		<img src="material/images/longbg.png" alt="" id="bg">
+		<img src="material/images/bling.gif" alt="" id="bling0" class="bling">
+		<img src="material/images/bling.gif" alt="" id="bling1" class="bling">
+		<img src="material/images/bling.gif" alt="" id="bling2" class="bling">
+		<img src="material/images/bling.gif" alt="" id="bling3" class="bling">
+		<img src="material/images/bling.gif" alt="" id="bling4" class="bling">	
+		<img src="material/images/bling.gif" alt="" id="bling5" class="bling">	
+
+		<canvas id = "mcanvas"  width="600" height="1066"></canvas>
+		<canvas id = "vcanvas" class="sitem" width="600" height="1066"></canvas>
+		
+		
+		<img src="material/images/bling.gif" alt="" id="c_bling" class="bling sitem">
+
+		<img src="material/images/text_bottom.png" id="tb" class="mitem">
+		<img src="material/images/ask_image1.png" id="ask1" class="mitem">
+		<img src="material/images/ask_image2.png" id="ask2" class="mitem">
+		<img src="material/images/res_image1.png" id="res1" class="mitem res">
+		<img src="material/images/res_image2.png" id="res2" class="mitem res">
+		<img src="material/images/res_image3.png" id="res3" class="mitem res">
+		<img src="material/images/res_image4.png" id="res4" class="mitem res">
+		<img src="material/images/res_image5.png" id="res5" class="mitem res">
+
+		<img src="material/images/suggest-text.png" id="suggest-text" class="sitem">
+		<div id="skip-outer"><div id="skip">跳过</div></div>
+
+		
+		<img src="material/images/x.png" id="back" class="sitem">
+		<div id="sbtn-container">
+			<div class="sitem" id="sbtn1">跳绳</div>
+			<div class="sitem" id="sbtn2">杠铃</div>
+		</div>
+		
+	</div>
+	<div id="mask">
+		<p id="ts-text">点击屏幕即可跳绳</p>
+		<p id="gl-text">上下滑动屏幕即可举杠铃</p>
+		<p id="fs-text">轻触屏幕进入全屏模式以获得最佳体验</p>
+	</div>	
+	<div id="reportBox">
+		<div id="reportTitle" class="datarow">
+			<h6>夏</h6><h5>东</h5><h4>海</h4><h3>の</h3><h2>运动报告</h2>
+		</div>
+			<div id="databox">
+				<div class="datarow">
+					<div id="sdata1" class="sd">
+						<label><span>跳</span><span>绳</span></label>
+						<span id="sn1" class="sn">100</span><span> 个</span>
+					</div>
+					<div id="sdata2" class="sd">
+						<label><span>杠</span><span>铃</span></label>
+						<span id="sn2" class="sn">20</span><span> 个</span>
+					</div>
+				</div>
+				<div class="datarow">
+					<div id="sdata3" class="sd">
+						<label><span>运</span><span>动</span><span>时</span><span>长</span></label>
+						<span id="sn3-m" class="sn">12</span><span> 分钟 </span><span id="sn3-s">45</span><span> 秒</span>
+					</div>
+					<div id="sdata4" class="sd">
+						<label><span>消</span><span>耗</span><span>能</span><span>量</span></label>
+						<span id="sn4" class="sn">1245</span><span> 卡路里</span>
+					</div>	
+				</div>		
+ 			</div> <!-- databox end -->
+			<div id="rankbox" class="datarow">
+				<p>您本次的运动数据超过<span id="sn5">12%</span>的用户!</p>
+			</div><!-- rankbox end -->
+
+			<div id="ecrgbox" class="datarow">
+				<p>再接再厉!</p>
+			</div><!-- ecrgbox end -->
+			
+			<div id="tipbox" class="datarow">
+				<p>小贴士：能量消耗不仅与运动强度、时长有关，还和你的性别、体重有密切的联系哦。</p>
+			</div><!-- tipbox end -->
+			
+			<div class="datarow" id="sportdone-btn">
+				<div>完成运动</div>
+			</div>
+
+	
+		</div> <!-- reportBox end-->
+
+		<div id="choiceBox">
+		
+			<div id="text-box">
+				<p id="t1">夏东海，你想看看家人们的一天吗?</p>
+				<p id="t2">刘梅这么漂亮，你要看紧点呀!</p>
+				<p id="t3">是否接受魔镜的建议?</p>
+				<p id="t4">你想知道什么呢?</p>
+			</div>
+			
+			
+			<div id="choice-btn-box">
+				<!-- 片头 -->
+				<div id="c1" class="choice-btn">
+					<div>赶紧瞧瞧</div>
+				</div>
+				<div id="c2" class="choice-btn">
+					<div>残忍拒绝</div>
+				</div>
+				<!-- morningAtHome -->
+				<div id="c3" class="choice-btn">
+					<div>是</div>
+				</div>				
+				<div id="c4" class="choice-btn">
+					<div>否</div>
+								</div>	
+				<!-- busStop			 -->
+				<div id="c5" class="choice-btn">
+					<div>A.妈妈的健康状况</div>
+								</div>				
+				<div id="c6" class="choice-btn">
+					<div>B.家中孩子的情况</div>
+				</div>	
+
+				<div id="c7" class="choice-btn">
+					<div>C.公交车快到了吗</div>
+				</div>					
+				<div id="c8" class="choice-btn">
+					<div>D.不想知道，冷漠</div>
+				</div>		
+				<!-- eveAtHome			 -->
+				<div id="c9" class="choice-btn">
+					<div>放动画片</div>
+				</div>					
+				<div id="c10" class="choice-btn">
+					<div>拨打120</div>
+				</div>					
+				<!-- 办公室 -->
+				<div id="c11" class="choice-btn">
+					<div>联系医生</div>
+				</div>					
+				<div id="c12" class="choice-btn">
+					<div>联系母亲</div>				
+
+			</div>
+		</div>  <!-- choiceBox end-->
+
+
+	<!-- <div id="tool"> -->
+
+	<!-- </div> -->
+	<div id="hidden">
+		<!-- 不可见的音频元素 -->
+		<audio loop="loop" src="material/audio/bgm0.mp3" id="bgm0"></audio>
+		<audio loop="loop" src="material/audio/bgm1.mp3" id="bgm1"></audio>
+		<audio src="material/audio/ropeskipping.mp3" id="rs" ></audio>
+		<audio src="material/audio/heartbeat.mp3" id="hb" ></audio>
+		<audio src="material/audio/start-question.mp3" id="sq" ></audio>
+		<audio src="material/audio/pity.mp3" id="pity" ></audio>
+
+
+		<!-- 不可见的视频元素 -->
+		<video id="mvideo" width="219" height="353" x5-video-player-type="h5" webkit-playsinline playsinline></video>
+
+		<video src="material/video/scene1.mp4" id="scene1" x5-video-player-type="h5" webkit-playsinline playsinline></video>
+		<video src="material/video/scene2.mp4" id="scene2" x5-video-player-type="h5" webkit-playsinline playsinline></video>
+		<video src="material/video/scene3.mp4" id="scene3" x5-video-player-type="h5" webkit-playsinline playsinline></video>
+		<video src="material/video/scene4.mp4" id="scene4" x5-video-player-type="h5" webkit-playsinline playsinline></video>
+		<video src="material/video/scene5.mp4" id="scene5" x5-video-player-type="h5" webkit-playsinline playsinline></video>
+		<video src="material/video/scene6.mp4" id="scene6" x5-video-player-type="h5" webkit-playsinline playsinline></video>	
+		<video src="material/video/scene7.mp4" id="scene7" x5-video-player-type="h5" webkit-playsinline playsinline></video>
+		<video src="material/video/scene8.mp4" id="scene8" x5-video-player-type="h5" webkit-playsinline playsinline></video>
+		<video src="material/video/scene9.mp4" id="scene9" x5-video-player-type="h5" webkit-playsinline playsinline></video>
+		<video src="material/video/scene10.mp4" id="scene10" x5-video-player-type="h5" webkit-playsinline playsinline></video>	
+		<video src="material/video/scene11.mp4" id="scene11" x5-video-player-type="h5" webkit-playsinline playsinline></video>	
+		<video src="material/video/scene12.mp4" id="scene12" x5-video-player-type="h5" webkit-playsinline playsinline></video>	
+		<video src="material/video/scene13.mp4" id="scene13" x5-video-player-type="h5" webkit-playsinline playsinline></video>	
+		<video src="material/video/scene14.mp4" id="scene14" x5-video-player-type="h5" webkit-playsinline playsinline></video>	
+		<video src="material/video/scene15.mp4" id="scene15" x5-video-player-type="h5" webkit-playsinline playsinline></video>	
+
+	</div>
+	<!-- 健身房 -->
+	<script src="material/js/gym.js"></script>
+	<!-- 片头 -->
+ 	<script src="material/js/bm.js"></script>
+
+ 	<script src="material/js/morningAtHome.js"></script>	
+ 	<script src="material/js/busStop.js"></script>	
+ 	<script src="material/js/atCompany.js"></script>
+ 	<script src="material/js/eveAtHome.js"></script>
+ 	<script src="material/js/atHospital.js"></script>
+
+ 	<script src="material/js/main1.js"></script>	
+	 
+</body>
+</html>
